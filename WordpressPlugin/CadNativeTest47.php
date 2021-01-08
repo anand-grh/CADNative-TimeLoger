@@ -52,6 +52,7 @@ if ( is_admin() ) {
 	require_once plugin_dir_path( __FILE__ ) . 'admin/TimeLog-manage.php';
 
 	require_once plugin_dir_path( __FILE__ ) . 'admin/User-Setup.php';
+	require_once plugin_dir_path( __FILE__ ) . 'admin/User-Time-Log.php';
 	
 }
 
@@ -59,6 +60,8 @@ if ( is_admin() ) {
 
 // include plugin dependencies: admin and public
 require_once plugin_dir_path( __FILE__ ) . 'includes/core-functions.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/RequestLoging_API.php';
+
 
 
 
