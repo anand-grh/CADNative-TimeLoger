@@ -231,7 +231,7 @@ namespace Test47
             this.ServerURL.Name = "ServerURL";
             this.ServerURL.Size = new System.Drawing.Size(293, 20);
             this.ServerURL.TabIndex = 17;
-            this.ServerURL.Text = "https://893a352e84d9fdcc176c42e3cf26a859.m.pipedream.net";
+            this.ServerURL.Text = "http://cadnative.com/wp-json/CNT47/v1/upload";
             // 
             // Form1
             // 
