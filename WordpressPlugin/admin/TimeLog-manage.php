@@ -23,8 +23,8 @@ class Customers_List extends WP_List_Table {
 	public function __construct() {
 
 		parent::__construct( [
-			'singular' => __( 'Customer', 'sp' ), //singular name of the listed records
-			'plural'   => __( 'Customers', 'sp' ), //plural name of the listed records
+			'singular' => __( 'Customer', 'CadNativeTest47' ), //singular name of the listed records
+			'plural'   => __( 'Customers', 'CadNativeTest47' ), //plural name of the listed records
 			'ajax'     => false //does this table support ajax?
 		] );
 
@@ -92,7 +92,7 @@ class Customers_List extends WP_List_Table {
 
 	/** Text displayed when no customer data is available */
 	public function no_items() {
-		_e( 'No customers avaliable.', 'sp' );
+		_e( 'No Logs avaliable.', 'CadNativeTest47' );
 	}
 
 
@@ -112,6 +112,8 @@ class Customers_List extends WP_List_Table {
 			case 'keyStrokeCount':
 			case 'mouseClickCount':
 				return $item[ $column_name ];
+			case 'lastCaptureImage':
+				return "<div>  <img style=\"width: 100%;\" src=\"data:image/png;base64, ".$item[ $column_name ]."\"  /></div>";
 			default:
 				return print_r( $item, true ); //Show the whole array for troubleshooting purposes
 		}
@@ -160,11 +162,13 @@ class Customers_List extends WP_List_Table {
 	function get_columns() {
 		$columns = [
 			'cb'      => '<input type="checkbox" />',
-			'AppVersion'    => __( 'AppVersion', 'sp' ),
-			'UserKey'    => __( 'UserKey', 'sp' ),
-			'curShot'    => __( 'curShot', 'sp' ),
-			'keyStrokeCount'    => __( 'keyStrokeCount', 'sp' ),
-			'mouseClickCount'    => __( 'mouseClickCount', 'sp' )
+			'AppVersion'    => __( 'AppVersion', 'CadNativeTest47' ),
+			'UserKey'    => __( 'UserKey', 'CadNativeTest47' ),
+			'curShot'    => __( 'curShot', 'CadNativeTest47' ),
+			'keyStrokeCount'    => __( 'keyStrokeCount', 'CadNativeTest47' ),
+			'mouseClickCount'    => __( 'mouseClickCount', 'CadNativeTest47' ),
+			'lastCaptureImage'    => __( 'lastCaptureImage', 'CadNativeTest47' )
+
 		];
 
 		return $columns;
@@ -178,11 +182,8 @@ class Customers_List extends WP_List_Table {
 	 */
 	public function get_sortable_columns() {
 		$sortable_columns = array(
-			'AppVersion' => array( 'AppVersion', true ),
 			'UserKey' => array( 'UserKey', false ),
-			'curShot' => array( 'curShot', false ),
-			'keyStrokeCount' => array( 'keyStrokeCount', false ),
-			'mouseClickCount' => array( 'mouseClickCount', false )
+			'curShot' => array( 'curShot', false )
 		);
 
 		return $sortable_columns;
@@ -340,7 +341,7 @@ class CadNativeTest47_manager {
 		$option = 'per_page';
 		$args   = [
 			'label'   => 'Logs',
-			'default' => 10,
+			'default' => 50,
 			'option'  => 'logs_per_page'
 		];
 
