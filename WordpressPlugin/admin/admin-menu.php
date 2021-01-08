@@ -41,32 +41,4 @@ add_action( 'admin_menu', 'CadNativeTest47_add_sublevel_menu' );
 
 
 
-// add top-level administrative menu
-function CadNativeTest47_add_toplevel_menu() {
-	
-	/* 
-	
-	add_menu_page(
-		string   $page_title, 
-		string   $menu_title, 
-		string   $capability, 
-		string   $menu_slug, 
-		callable $function = '', 
-		string   $icon_url = '', 
-		int      $position = null 
-	)
-	
-	*/
-	
-	add_menu_page(
-		esc_html__('CadNative Test47 Settings', 'CadNativeTest47'),
-		esc_html__('CadNative Test47', 'CadNativeTest47'),
-		'manage_options',
-		'CadNativeTest47_LogerEmployee_manage',
-		'CadNativeTest47_LogerEmployee_manage',
-		'dashicons-admin-generic',
-		null
-	);
-	
-}
-add_action( 'admin_menu', 'CadNativeTest47_add_toplevel_menu' );
+

@@ -48,9 +48,10 @@ if ( is_admin() ) {
 	require_once plugin_dir_path( __FILE__ ) . 'admin/settings-callbacks.php';
 	require_once plugin_dir_path( __FILE__ ) . 'admin/settings-validate.php';
 	
-	require_once plugin_dir_path( __FILE__ ) . 'admin/LogerEmployee-manage.php';
+	//require_once plugin_dir_path( __FILE__ ) . 'admin/LogerEmployee-manage.php';TimeLog-manage
+	require_once plugin_dir_path( __FILE__ ) . 'admin/TimeLog-manage.php';
 
-	require_once plugin_dir_path( __FILE__ ) . 'admin/Usertt.php';
+	require_once plugin_dir_path( __FILE__ ) . 'admin/User-Setup.php';
 	
 }
 
@@ -94,6 +95,36 @@ function CadNativeTest47_add_action_links( $links ) {
 add_filter( 'plugin_action_links_' . plugin_basename( plugin_dir_path( __FILE__ ) . 'CadNativeTest47.php'), 'CadNativeTest47_add_action_links' );
 
 
+
+
+function CadNativeTest47_create_plugin_database_table()
+{
+    global $table_prefix, $wpdb;
+
+    $tblname = 'timeloger47';
+    $wp_track_table = $table_prefix . "$tblname";
+
+    #Check to see if the table exists already, if not, then create it
+
+    if($wpdb->get_var( "show tables like '$wp_track_table'" ) != $wp_track_table) 
+    {
+
+        $sql = "CREATE TABLE `". $wp_track_table . "` ( ";
+        $sql .= "  `ID`  int(11)   NOT NULL auto_increment, ";
+        $sql .= "  `AppVersion`  varchar(255)   NOT NULL, ";
+        $sql .= "  `UserKey`  varchar(255)   NOT NULL, ";
+        $sql .= "  `curShot`  datetime   NOT NULL, ";
+        $sql .= "  `keyStrokeCount`  int(11)   NOT NULL, ";
+        $sql .= "  `mouseClickCount`  int(11)   NOT NULL, ";
+        $sql .= "  `lastCaptureImage`  blob   NOT NULL, ";
+        $sql .= "  PRIMARY KEY `log_id` (`id`) "; 
+        $sql .= ") ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; ";
+        require_once( ABSPATH . '/wp-admin/includes/upgrade.php' );
+        dbDelta($sql);
+    }
+}
+
+ register_activation_hook( __FILE__, 'CadNativeTest47_create_plugin_database_table' );
 
 
 
