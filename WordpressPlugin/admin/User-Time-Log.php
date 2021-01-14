@@ -16,7 +16,7 @@ if ( ! class_exists( 'WP_List_Table' ) ) {
 	require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 }
 
-class User_List extends WP_List_Table {
+class Customers_List1 extends WP_List_Table {
 
 	
 	/** Class constructor */
@@ -106,11 +106,11 @@ class User_List extends WP_List_Table {
 	 */
 	public function column_default( $item, $column_name ) {
 		switch ( $column_name ) {
-			case 'UserName':
-			case 'Name':
-			case 'Email':
+			case 'AppVersion':
 			case 'UserKey':
 			case 'curShot':
+			case 'keyStrokeCount':
+			case 'mouseClickCount':
 				return $item[ $column_name ];
 			default:
 				return print_r( $item, true ); //Show the whole array for troubleshooting purposes
@@ -160,11 +160,11 @@ class User_List extends WP_List_Table {
 	function get_columns() {
 		$columns = [
 			'cb'      => '<input type="checkbox" />',
-			'UserName'    => __( 'User Name', 'sp' ),
-			'Name'    => __( 'Name', 'sp' ),
-			'Email'    => __( 'Email', 'sp' ),
+			'AppVersion'    => __( 'AppVersion', 'sp' ),
 			'UserKey'    => __( 'UserKey', 'sp' ),
-			'curShot'    => __( 'Current Screen Trap', 'sp' )
+			'curShot'    => __( 'curShot', 'sp' ),
+			'keyStrokeCount'    => __( 'keyStrokeCount', 'sp' ),
+			'mouseClickCount'    => __( 'mouseClickCount', 'sp' )
 		];
 
 		return $columns;
@@ -178,11 +178,11 @@ class User_List extends WP_List_Table {
 	 */
 	public function get_sortable_columns() {
 		$sortable_columns = array(
-			'UserName' => array( 'User Name', true ),
-			'Name' => array( 'Name', false ),
-			'Email' => array( 'Email', false ),
+			'AppVersion' => array( 'AppVersion', true ),
 			'UserKey' => array( 'UserKey', false ),
-			'curShot' => array( 'Current Screen Trap', false )
+			'curShot' => array( 'curShot', false ),
+			'keyStrokeCount' => array( 'keyStrokeCount', false ),
+			'mouseClickCount' => array( 'mouseClickCount', false )
 		);
 
 		return $sortable_columns;
@@ -296,13 +296,13 @@ class CadNativeTest47_manager1 {
 		$hook = add_submenu_page(
 			'TimeLog',
 			'CadNativeTest47 TimeLog',
-			'User-Time-Log',
+			'User Time Log',
 			'manage_options',
 			'TimeLog1',
 			[ $this, 'plugin_settings_page' ]
 		);
 
-		 add_action( "load-$hook", [ $this, 'screen_option1' ] );
+		 add_action( "load-$hook", [ $this, 'screen_option' ] );
 
 		
 		
@@ -315,7 +315,7 @@ class CadNativeTest47_manager1 {
 	public function plugin_settings_page() {
 		?>
 		<div class="wrap">
-			<h2>CadNativeTest47 TimeLog</h2>
+			<h2>CadNativeTest47 TimeLog </h2>
 
 			<div id="poststuff">
 				<div id="post-body" class="metabox-holder columns-2">
@@ -338,7 +338,7 @@ class CadNativeTest47_manager1 {
 	/**
 	 * Screen options
 	 */
-	public function screen_option1() {
+	public function screen_option() {
 
 		$option = 'per_page';
 		$args   = [
@@ -349,7 +349,7 @@ class CadNativeTest47_manager1 {
 
 		add_screen_option( $option, $args );
 
-		$this->customers_obj = new User_List();
+		$this->customers_obj = new Customers_List();
 	}
 
 
